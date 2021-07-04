@@ -4,7 +4,7 @@ using System.Linq;
 using EnumerableExtensions;
 using NUnit.Framework;
 
-namespace Linq.Test
+namespace Linq.Test.Operators
 {
     [TestFixture]
     public class RestrictionOperators
