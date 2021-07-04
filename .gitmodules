@@ -1,0 +1,3 @@
+[submodule "Linq/try-samples"]
+	path = Linq/try-samples
+	url = https://github.com/dotnet/try-samples.git
