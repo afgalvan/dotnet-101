@@ -1,6 +1,3 @@
-[submodule "Linq/try-samples"]
-	path = try-samples
-	url = https://github.com/dotnet/try-samples.git
 [submodule "try-samples"]
 	path = try-samples
 	url = https://github.com/dotnet/try-samples.git
