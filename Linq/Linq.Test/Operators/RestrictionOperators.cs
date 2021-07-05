@@ -10,7 +10,9 @@ namespace Linq.Test.Operators
     public class RestrictionOperators
     {
         /// <summary>
-        /// The Where keyword works as a Filter
+        /// Where keyword works as a Filter.
+        /// The where keyword or Where method provide this capability.
+        /// These operators restrict, or filter, the input sequence to produce an output sequence.
         /// </summary>
         [Test]
         public void WhereKeyword()

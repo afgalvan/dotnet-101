@@ -5,6 +5,10 @@ using NUnit.Framework;
 
 namespace Linq.Test.Operators
 {
+    /// <summary>
+    /// Use the Take, Skip, TakeWhile and SkipWhile methods to partition the input sequence.
+    /// You can get a slice of the input sequence as the output sequence.
+    /// </summary>
     [TestFixture]
     public class PartitionOperators
     {

@@ -12,6 +12,10 @@ namespace Linq.Test.Operators
             string.Compare(x, y, StringComparison.OrdinalIgnoreCase);
     }
     
+    /// <summary>
+    /// The orderby keyword, along with descending, and the OrderBy, ThenBy, OrderbyDescending
+    /// and ThenByDescending LINQ queries are used to sort data output.
+    /// </summary>
     [TestFixture]
     public class OrderingOperators
     {

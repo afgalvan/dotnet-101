@@ -10,7 +10,10 @@ namespace Linq.Test.Operators
     public class ProjectionOperators
     {
         /// <summary>
-        /// The Select clause works as a Map method
+        /// Select works as a Map method.
+        /// The select keyword or Select method provide this capability.
+        /// These operators create output sequence elements from input sequence elements.
+        /// The output elements may be either the same or different types.
         /// </summary>
         [Test]
         public void SelectClause()
