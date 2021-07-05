@@ -9,6 +9,9 @@ namespace Linq.Test.Operators
     [TestFixture]
     public class ProjectionOperators
     {
+        /// <summary>
+        /// The Select clause works as a Map method
+        /// </summary>
         [Test]
         public void SelectClause()
         {

@@ -9,6 +9,9 @@ namespace Linq.Test.Operators
     [TestFixture]
     public class RestrictionOperators
     {
+        /// <summary>
+        /// The Where keyword works as a Filter
+        /// </summary>
         [Test]
         public void WhereKeyword()
         {
@@ -21,6 +24,7 @@ namespace Linq.Test.Operators
 
             IEnumerable<int> lowNums = numbers.Where(n => n < 5);
 
+            Assert.AreEqual(lowNumsLinq, lowNums);
             Console.WriteLine("Numbers < 5:");
             lowNums.ForEach(Console.WriteLine);
         }

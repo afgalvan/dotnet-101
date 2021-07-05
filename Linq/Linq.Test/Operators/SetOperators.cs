@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace Linq.Test
+namespace Linq.Test.Operators
 {
     [TestFixture]
     public class SetOperators

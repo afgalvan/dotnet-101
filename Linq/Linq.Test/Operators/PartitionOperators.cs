@@ -38,6 +38,17 @@ namespace Linq.Test.Operators
         }
 
         [Test]
+        public void TakeLast()
+        {
+            int[] numbers = {5, 4, 1, 3, 9, 8, 6, 7, 2, 0, 9};
+            
+            // TODO: Solve ambiguous method reference on TakeLast(IEnumerable, int) method
+            // int lastNumber = numbers.TakeLast(1).ToList()[0];
+            int lastNumber = numbers.AsQueryable().TakeLast(1).ToList()[0];
+            Console.WriteLine("Last number: " + lastNumber);
+        }
+
+        [Test]
         public void SkipElements()
         {
             int[] numbers = {5, 4, 1, 3, 9, 8, 6, 7, 2, 0};
