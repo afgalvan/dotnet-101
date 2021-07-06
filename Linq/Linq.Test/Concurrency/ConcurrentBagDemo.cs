@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Linq.Test.Concurrent
+namespace Linq.Test.Concurrency
 {
     [TestFixture]
     internal class ConcurrentBagDemo
@@ -50,7 +50,8 @@ namespace Linq.Test.Concurrent
             Console.WriteLine($"There were {itemsInBag} items in the bag");
 
             if (concurrentBag.TryPeek(out _))
-                Console.WriteLine("Found an item in the bag when it should be empty");
+                Console.WriteLine(
+                    "Found an item in the bag when it should be empty");
         }
     }
 }

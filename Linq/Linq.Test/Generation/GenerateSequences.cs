@@ -1,10 +1,9 @@
 using NUnit.Framework;
 
-namespace Linq.Test.Sequences
+namespace Linq.Test.Generation
 {
     [TestFixture]
     public class GenerateSequences
     {
-        
     }
 }
