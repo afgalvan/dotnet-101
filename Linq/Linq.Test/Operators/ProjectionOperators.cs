@@ -32,7 +32,11 @@ namespace Linq.Test.Operators
         public void TransformWithSelectClause()
         {
             int[] numbers = {5, 4, 1, 3, 9, 8, 6, 7, 2, 0};
-            string[] strings = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+            string[] strings =
+            {
+                "zero", "one", "two", "three", "four", "five", "six", "seven",
+                "eight", "nine"
+            };
 
             IEnumerable<string> textNums = numbers.Select(n => strings[n]);
 
@@ -49,21 +53,29 @@ namespace Linq.Test.Operators
             // var upperLowerWords = words.Select(w => new {Upper = w.ToUpper(), Lower = w.ToLower()});
 
             // Using a tuple
-            var upperLowerWords = words.Select(w => (Upper: w.ToUpper(), Lower: w.ToLower()));
-            upperLowerWords.ForEach(ul => Console.WriteLine($"Uppercase: {ul.Upper}, Lowercase: {ul.Lower}"));
+            IEnumerable<(string Upper, string Lower)> upperLowerWords =
+                words.Select(w => (Upper: w.ToUpper(), Lower: w.ToLower()));
+            upperLowerWords.ForEach(ul =>
+                Console.WriteLine(
+                    $"Uppercase: {ul.Upper}, Lowercase: {ul.Lower}"));
         }
 
         [Test]
         public void SelectToCreateNewTypes()
         {
             int[] numbers = {5, 4, 1, 3, 9, 8, 6, 7, 2, 0};
-            string[] strings = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+            string[] strings =
+            {
+                "zero", "one", "two", "three", "four", "five", "six", "seven",
+                "eight", "nine"
+            };
 
             var digitOddEvens = from n in numbers
                 select new {Digit = strings[n], Even = n % 2 == 0};
 
             digitOddEvens.ForEach(d =>
-                Console.WriteLine($"The digit {d.Digit} is {(d.Even ? "even" : "odd")}.")
+                Console.WriteLine(
+                    $"The digit {d.Digit} is {(d.Even ? "even" : "odd")}.")
             );
         }
 
@@ -71,18 +83,24 @@ namespace Linq.Test.Operators
         public void SelectWithIndex()
         {
             int[] numbers = {5, 4, 1, 3, 9, 8, 6, 7, 2, 0};
-            var numsInPlace = numbers.Select((n, index) => (Num: n, InPlace: n == index));
+            IEnumerable<(int Num, bool InPlace)> numsInPlace =
+                numbers.Select((n, index) => (Num: n, InPlace: n == index));
             Console.WriteLine("Number: In-Place?");
-            numsInPlace.ForEach(n => Console.WriteLine($"{n.Num}:\t\t{n.InPlace}"));
+            numsInPlace.ForEach(n =>
+                Console.WriteLine($"{n.Num}:\t\t{n.InPlace}"));
         }
 
         [Test]
         public void SelectWithWhere()
         {
             int[] numbers = {5, 4, 1, 3, 9, 8, 6, 7, 2, 0};
-            string[] digits = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+            string[] digits =
+            {
+                "zero", "one", "two", "three", "four", "five", "six", "seven",
+                "eight", "nine"
+            };
 
-            var lowNums = numbers.Where(n => n < 5)
+            IEnumerable<string> lowNums = numbers.Where(n => n < 5)
                 .Select(n => digits[n]);
 
             Console.WriteLine("Numbers < 5: ");
@@ -95,18 +113,19 @@ namespace Linq.Test.Operators
             int[] numbersA = {0, 2, 4, 5, 6, 8, 9};
             int[] numbersB = {1, 3, 5, 7, 8};
 
-            var pairs = from a in numbersA
+            IEnumerable<(int a, int b)> pairs = from a in numbersA
                 from b in numbersB
                 where a < b
                 select (a, b);
 
-            var otherPairs = numbersA.SelectMany(
+            IEnumerable<(int a, int b)> otherPairs = numbersA.SelectMany(
                 a => numbersB.Where(b => a < b)
                     .Select(b => (a, b))
             );
 
             Assert.AreEqual(pairs, otherPairs);
-            pairs.ForEach(pair => Console.WriteLine($"{pair.a} is less than {pair.b}"));
+            pairs.ForEach(pair =>
+                Console.WriteLine($"{pair.a} is less than {pair.b}"));
         }
     }
 }

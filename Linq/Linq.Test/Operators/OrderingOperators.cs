@@ -8,10 +8,12 @@ namespace Linq.Test.Operators
 {
     public class CaseInsensitiveComparer : IComparer<string>
     {
-        public int Compare(string x, string y) =>
-            string.Compare(x, y, StringComparison.OrdinalIgnoreCase);
+        public int Compare(string x, string y)
+        {
+            return string.Compare(x, y, StringComparison.OrdinalIgnoreCase);
+        }
     }
-    
+
     /// <summary>
     /// The orderby keyword, along with descending, and the OrderBy, ThenBy, OrderbyDescending
     /// and ThenByDescending LINQ queries are used to sort data output.
@@ -24,10 +26,10 @@ namespace Linq.Test.Operators
         {
             string[] words = {"cherry", "apple", "blueberry"};
 
-            var orderedWordsLinq = from word in words
+            IOrderedEnumerable<string> orderedWordsLinq = from word in words
                 orderby word
                 select word;
-            var orderedWords = words.OrderBy(w => w);
+            IOrderedEnumerable<string> orderedWords = words.OrderBy(w => w);
             Assert.AreEqual(orderedWordsLinq, orderedWords);
 
             Console.WriteLine("The ordered list of words: ");
@@ -39,10 +41,11 @@ namespace Linq.Test.Operators
         {
             string[] words = {"cherry", "apple", "blueberry"};
 
-            var orderedWordsLinq = from word in words
+            IOrderedEnumerable<string> orderedWordsLinq = from word in words
                 orderby word.Length
                 select word;
-            var orderedWords = words.OrderBy(w => w.Length);
+            IOrderedEnumerable<string> orderedWords =
+                words.OrderBy(w => w.Length);
             Assert.AreEqual(orderedWordsLinq, orderedWords);
 
             Console.WriteLine("The ordered list of words: ");
@@ -54,10 +57,11 @@ namespace Linq.Test.Operators
         {
             string[] words = {"cherry", "apple", "blueberry"};
 
-            var orderedWordsLinq = from word in words
+            IOrderedEnumerable<string> orderedWordsLinq = from word in words
                 orderby word descending
                 select word;
-            var orderedWords = words.OrderByDescending(w => w);
+            IOrderedEnumerable<string> orderedWords =
+                words.OrderByDescending(w => w);
             Assert.AreEqual(orderedWordsLinq, orderedWords);
 
             Console.WriteLine("The ordered list of words: ");
@@ -67,12 +71,18 @@ namespace Linq.Test.Operators
         [Test]
         public void OrderFromMultipleProperties()
         {
-            string[] digits = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+            string[] digits =
+            {
+                "zero", "one", "two", "three", "four", "five", "six", "seven",
+                "eight", "nine"
+            };
 
-            var orderedByTwoParametersLinq = from digit in digits
+            IOrderedEnumerable<string> orderedByTwoParametersLinq =
+                from digit in digits
                 orderby digit.Length, digit
                 select digit;
-            var orderedByTwoParameters = digits.OrderBy(digit => digit.Length)
+            IOrderedEnumerable<string> orderedByTwoParameters = digits
+                .OrderBy(digit => digit.Length)
                 .ThenBy(digit => digit);
 
             Assert.AreEqual(orderedByTwoParametersLinq, orderedByTwoParameters);
@@ -84,24 +94,32 @@ namespace Linq.Test.Operators
         [Test]
         public void ReverseSequence()
         {
-            string[] digits = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-            var reversedIDigitsLinq = (
+            string[] digits =
+            {
+                "zero", "one", "two", "three", "four", "five", "six", "seven",
+                "eight", "nine"
+            };
+            IEnumerable<string> reversedIDigitsLinq = (
                 from digit in digits
                 where digit[1] == 'i'
                 select digit
             ).Reverse();
-            var reversedIDigits = digits.Where(digit => digit[1] == 'i').Reverse();
+            IEnumerable<string> reversedIDigits =
+                digits.Where(digit => digit[1] == 'i').Reverse();
             Assert.AreEqual(reversedIDigitsLinq, reversedIDigits);
-            Console.WriteLine("A backwards list of the digits with a second character of 'i':");
+            Console.WriteLine(
+                "A backwards list of the digits with a second character of 'i':");
             reversedIDigits.ForEach(digit => Console.WriteLine(digit));
         }
 
         [Test]
         public void OrderByWithCustomComparer()
         {
-            string[] words = { "aPPLE", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
+            string[] words =
+                {"aPPLE", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry"};
 
-            var sortedWords = words.OrderBy(w => w, new CaseInsensitiveComparer());
+            IOrderedEnumerable<string> sortedWords =
+                words.OrderBy(w => w, new CaseInsensitiveComparer());
             sortedWords.ToList().ForEach(Console.WriteLine);
         }
     }

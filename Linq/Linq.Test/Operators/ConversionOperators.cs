@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using EnumerableExtensions;
 
@@ -17,19 +18,18 @@ namespace Linq.Test.Operators
         {
             double[] doubles = {1.7, 2.3, 1.9, 4.1, 2.9};
 
-            var sortedDoublesLinq = from d in doubles
+            IOrderedEnumerable<double> sortedDoublesLinq = from d in doubles
                 orderby d descending
                 select d;
-            var sortedDoubles = doubles.OrderByDescending(d => d);
-            var doublesArray = sortedDoubles.ToArray();
+            IOrderedEnumerable<double> sortedDoubles =
+                doubles.OrderByDescending(d => d);
+            double[] doublesArray = sortedDoubles.ToArray();
 
             Assert.AreEqual(sortedDoublesLinq, sortedDoubles);
 
             Console.WriteLine("Every other double from highest to lowest:");
             for (var i = 0; i < doubles.Length; i += 2)
-            {
                 Console.WriteLine(doublesArray[i]);
-            }
         }
 
         [Test]
@@ -37,10 +37,10 @@ namespace Linq.Test.Operators
         {
             string[] words = {"cherry", "apple", "blueberry"};
 
-            var orderedWordsLinq = from w in words
+            IOrderedEnumerable<string> orderedWordsLinq = from w in words
                 orderby w
                 select w;
-            var orderedWords = words.OrderBy(w => w);
+            IOrderedEnumerable<string> orderedWords = words.OrderBy(w => w);
 
             Assert.AreEqual(orderedWordsLinq, orderedWords);
 
@@ -67,7 +67,7 @@ namespace Linq.Test.Operators
         {
             object[] numbers = {null, 1.0, "two", 3, "four", 5, "six", 7.0};
 
-            var doubles = numbers.OfType<double>();
+            IEnumerable<double> doubles = numbers.OfType<double>();
 
             Console.WriteLine("Numbers stored as doubles:");
             doubles.ForEach(Console.WriteLine);

@@ -5,6 +5,5 @@ namespace Linq.Test.Operations
     [TestFixture]
     public class JoinOperations
     {
-        
     }
 }

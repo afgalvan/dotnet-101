@@ -20,7 +20,7 @@ namespace Linq.Test.Operators
                 "seven", "eight", "nine"
             };
 
-            var startsWithO = strings.First(s => s[0] == 'o');
+            string startsWithO = strings.First(s => s[0] == 'o');
 
             Console.WriteLine($"A string starting with 'o': {startsWithO}");
         }
@@ -37,7 +37,7 @@ namespace Linq.Test.Operators
                 "seven", "eight", "nine", "ten"
             };
 
-            var firstLongWord = numbers.FirstOrDefault(n => n.Length > 10);
+            string firstLongWord = numbers.FirstOrDefault(n => n.Length > 10);
             Console.WriteLine("Fist word with length more than 10: ");
             Console.WriteLine(firstLongWord);
         }
@@ -50,7 +50,7 @@ namespace Linq.Test.Operators
         {
             int[] numbers = {5, 4, 1, 3, 9, 8, 6, 7, 2, 0};
 
-            var fourthLowNum = numbers.Where(n => n > 5).ElementAt(1);
+            int fourthLowNum = numbers.Where(n => n > 5).ElementAt(1);
 
             Console.WriteLine($"Second number > 5: {fourthLowNum}");
         }

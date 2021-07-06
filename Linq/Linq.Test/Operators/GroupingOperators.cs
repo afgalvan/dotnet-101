@@ -12,11 +12,17 @@ namespace Linq.Test.Operators
     [TestFixture]
     public class GroupingOperators
     {
-        public class AnagramEqualityComparer : IEqualityComparer<string>
+        private class AnagramEqualityComparer : IEqualityComparer<string>
         {
-            public bool Equals(string x, string y) => GetCanonicalString(x) == GetCanonicalString(y);
+            public bool Equals(string x, string y)
+            {
+                return GetCanonicalString(x) == GetCanonicalString(y);
+            }
 
-            public int GetHashCode(string obj) => GetCanonicalString(obj).GetHashCode();
+            public int GetHashCode(string obj)
+            {
+                return GetCanonicalString(obj).GetHashCode();
+            }
 
             private static string GetCanonicalString(string word)
             {
@@ -25,23 +31,26 @@ namespace Linq.Test.Operators
                 return new string(wordChars);
             }
         }
-        
+
         [Test]
         public void GroupByIntoBuckets()
         {
             int[] numbers = {5, 4, 1, 3, 9, 8, 6, 7, 2, 0};
-            var numberGroupLinq = from n in numbers
-                group n by n % 5
-                into g
-                select (Remainder: g.Key, Numbers: g);
-            var numberGroup = numbers.GroupBy(n => n % 5)
-                .Select(g => (Remainder: g.Key, Numbers: g));
-            
+            IEnumerable<(int Remainder, IGrouping<int, int> Numbers)>
+                numberGroupLinq = from n in numbers
+                    group n by n % 5
+                    into g
+                    select (Remainder: g.Key, Numbers: g);
+            IEnumerable<(int Remainder, IGrouping<int, int> Numbers)>
+                numberGroup = numbers.GroupBy(n => n % 5)
+                    .Select(g => (Remainder: g.Key, Numbers: g));
+
             Assert.AreEqual(numberGroupLinq, numberGroup);
             numberGroup.ForEach(g =>
             {
-                var (remainder, grouping) = g;
-                Console.WriteLine($"\nNumbers with a remainder of {remainder} when divided by 5:");
+                (int remainder, IGrouping<int, int> grouping) = g;
+                Console.WriteLine(
+                    $"\nNumbers with a remainder of {remainder} when divided by 5:");
                 grouping.ForEach(n => Console.Write($"{n}, "));
             });
         }
@@ -49,31 +58,42 @@ namespace Linq.Test.Operators
         [Test]
         public void GroupByUsingProperties()
         {
-            string[] words = { "blueberry", "chimpanzee", "abacus", "banana", "apple", "cheese" };
+            string[] words =
+            {
+                "blueberry", "chimpanzee", "abacus", "banana", "apple", "cheese"
+            };
 
-            var wordGroupsLinq = from w in words
-                group w by w[0] into g
-                select (FirstLetter: g.Key, Words: g);
-            var wordGroups = words.GroupBy(w => w[0])
-                .Select(g => (FirstLetter: g.Key, Words: g));
+            IEnumerable<(char FirstLetter, IGrouping<char, string> Words)>
+                wordGroupsLinq = from w in words
+                    group w by w[0]
+                    into g
+                    select (FirstLetter: g.Key, Words: g);
+            IEnumerable<(char FirstLetter, IGrouping<char, string> Words, int
+                Count)> wordGroups = words.GroupBy(w => w[0])
+                .Select(g => (FirstLetter: g.Key, Words: g, Count: g.Count()));
 
             Assert.AreEqual(wordGroupsLinq, wordGroups);
             wordGroups.ForEach(g =>
             {
-                var (firstLetter, words) = g;
-                Console.WriteLine("\nWords that start with the letter '{0}':", firstLetter);
-                words.ForEach(word => Console.Write($"{word}, "));
+                (char firstLetter, IGrouping<char, string> grouping, _) = g;
+                Console.WriteLine("\nWords that start with the letter '{0}':",
+                    firstLetter);
+                grouping.ForEach(word => Console.Write($"{word}, "));
             });
         }
-        
+
         [Test]
         public void GroupByWithCustomComparer()
         {
-            string[] anagrams = { "from   ", " salt", " earn ", "  last   ", " near ", " form  " };
-            var orderGroups = anagrams.GroupBy(
-                w => w.Trim(),
-                a => a.ToUpper().Trim(),
-                new AnagramEqualityComparer());
+            string[] anagrams =
+            {
+                "from   ", " salt", " earn ", "  last   ", " near ", " form  "
+            };
+            IEnumerable<IGrouping<string, string>> orderGroups =
+                anagrams.GroupBy(
+                    w => w.Trim(),
+                    a => a.ToUpper().Trim(),
+                    new AnagramEqualityComparer());
             orderGroups.ForEach(set =>
             {
                 Console.WriteLine(set.Key);

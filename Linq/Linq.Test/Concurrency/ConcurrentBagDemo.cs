@@ -18,11 +18,11 @@ namespace Linq.Test.Concurrency
         public void ConcurrentBag()
         {
             // Add to ConcurrentBag concurrently
-            ConcurrentBag<int> concurrentBag = new ConcurrentBag<int>();
-            List<Task> bagAddTasks = new List<Task>();
-            for (int i = 0; i < 5; i++)
+            var concurrentBag = new ConcurrentBag<int>();
+            var bagAddTasks = new List<Task>();
+            for (var i = 0; i < 5; i++)
             {
-                var numberToAdd = i;
+                int numberToAdd = i;
                 bagAddTasks.Add(Task.Run(() => concurrentBag.Add(numberToAdd)));
             }
 
@@ -30,20 +30,16 @@ namespace Linq.Test.Concurrency
             Task.WaitAll(bagAddTasks.ToArray());
 
             // Consume the items in the bag
-            List<Task> bagConsumeTasks = new List<Task>();
-            int itemsInBag = 0;
+            var bagConsumeTasks = new List<Task>();
+            var itemsInBag = 0;
             while (!concurrentBag.IsEmpty)
-            {
                 bagConsumeTasks.Add(Task.Run(() =>
                 {
-                    int item;
-                    if (concurrentBag.TryTake(out item))
-                    {
-                        Console.WriteLine(item);
-                        itemsInBag++;
-                    }
+                    if (!concurrentBag.TryTake(out int item)) return;
+
+                    Console.WriteLine(item);
+                    itemsInBag++;
                 }));
-            }
 
             Task.WaitAll(bagConsumeTasks.ToArray());
 

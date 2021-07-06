@@ -34,12 +34,18 @@ namespace Linq.Test.Operators
         [Test]
         public void WhereKeywordWithIndex()
         {
-            string[] digits = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+            string[] digits =
+            {
+                "zero", "one", "two", "three", "four", "five", "six", "seven",
+                "eight", "nine"
+            };
 
-            IEnumerable<string> shortDigits = digits.Where((digit, index) => digit.Length < index);
+            IEnumerable<string> shortDigits =
+                digits.Where((digit, index) => digit.Length < index);
 
             Console.WriteLine("Short digits:");
-            shortDigits.ForEach(d => Console.WriteLine($"The word {d} is shorter than its value."));
+            shortDigits.ForEach(d =>
+                Console.WriteLine($"The word {d} is shorter than its value."));
         }
     }
 }

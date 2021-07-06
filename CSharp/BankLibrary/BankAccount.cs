@@ -10,7 +10,7 @@ namespace BankLibrary
     {
         public string Id { get; }
         public string Owner { get; set; }
-        public decimal Balance => _transactionHistory.Select(transaction => transaction.Amount).Sum();
+        public decimal Balance => _transactionHistory.Sum(transaction => transaction.Amount);
 
         private readonly List<Transaction> _transactionHistory = new List<Transaction>();
         private static int _accountNumberSeed = 123456789;

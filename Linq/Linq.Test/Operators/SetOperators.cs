@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using EnumerableExtensions;
 using NUnit.Framework;
@@ -19,7 +20,7 @@ namespace Linq.Test.Operators
         public void FindDistinctElements()
         {
             int[] factorsOf300 = {2, 2, 3, 5, 5};
-            var uniqueFactors = factorsOf300.Distinct();
+            IEnumerable<int> uniqueFactors = factorsOf300.Distinct();
             Console.WriteLine("Prime factors of 300:");
             uniqueFactors.ForEach(Console.WriteLine);
         }
@@ -30,11 +31,15 @@ namespace Linq.Test.Operators
         [Test]
         public void DistinctByProperty()
         {
-            string[] words = {"blueberry", "chimpanzee", "abacus", "banana", "apple", "cheese"};
+            string[] words =
+            {
+                "blueberry", "chimpanzee", "abacus", "banana", "apple", "cheese"
+            };
 
-            var categoryNamesLinq = (from w in words
+            IEnumerable<int> categoryNamesLinq = (from w in words
                 select w.Length).Distinct();
-            var categoryNames = words.Select(w => w.Length).Distinct();
+            IEnumerable<int> categoryNames =
+                words.Select(w => w.Length).Distinct();
 
             Assert.AreEqual(categoryNamesLinq, categoryNames);
         }
@@ -48,7 +53,7 @@ namespace Linq.Test.Operators
             int[] numbersA = {0, 2, 4, 1, 6, 8, 9};
             int[] numbersB = {1, 9, 5, 4, 8, 0, 7};
 
-            var uniqueNumbers = numbersA.Union(numbersB);
+            IEnumerable<int> uniqueNumbers = numbersA.Union(numbersB);
 
             Console.WriteLine("Unique numbers from both arrays:");
             uniqueNumbers.ForEach(Console.WriteLine);
@@ -61,7 +66,7 @@ namespace Linq.Test.Operators
             int[] numbersB = {1, 9, 5, 4, 8, 0, 7};
 
             Console.WriteLine("Common numbers from both arrays:");
-            var commonNumbers = numbersA.Intersect(numbersB);
+            IEnumerable<int> commonNumbers = numbersA.Intersect(numbersB);
             commonNumbers.ForEach(Console.WriteLine);
         }
 
@@ -72,7 +77,7 @@ namespace Linq.Test.Operators
             int[] numbersB = {1, 9, 5, 4, 8, 0};
 
             Console.WriteLine("Numbers in first array but not second array:");
-            var commonNumbers = numbersA.Except(numbersB);
+            IEnumerable<int> commonNumbers = numbersA.Except(numbersB);
             commonNumbers.ForEach(Console.WriteLine);
         }
     }
