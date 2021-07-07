@@ -1,8 +1,8 @@
-using ContosoPets.Models;
-using ContosoPets.Settings;
+using ContosoPets._1.Models;
 using Microsoft.EntityFrameworkCore;
+using Settings;
 
-namespace ContosoPets.Data
+namespace ContosoPets._1.Data
 {
     public class ContosoPetsContext : DbContext
     {

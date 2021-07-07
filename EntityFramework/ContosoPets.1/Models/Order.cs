@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ContosoPets.Models
+namespace ContosoPets._1.Models
 {
     public class Order
     {

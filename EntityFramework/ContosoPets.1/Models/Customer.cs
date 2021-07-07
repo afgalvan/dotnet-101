@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ContosoPets.Models
+namespace ContosoPets._1.Models
 {
     public class Customer
     {

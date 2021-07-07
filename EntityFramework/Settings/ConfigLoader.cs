@@ -1,4 +1,4 @@
-namespace ContosoPets.Settings
+namespace Settings
 {
     public class ConfigLoader
     {

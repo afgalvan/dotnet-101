@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ContosoPets.Data;
-using ContosoPets.Models;
-using ContosoPets.Settings;
+using ContosoPets._1.Data;
+using ContosoPets._1.Models;
+using Settings;
 
-namespace ContosoPets
+namespace ContosoPets._1
 {
     class Program
     {
@@ -13,9 +13,11 @@ namespace ContosoPets
         {
             Configuration.Load(args);
             SaveProducts();
+            Console.WriteLine("\nOriginal products.");
             DisplayProducts();
-            DeleteProduct("Dog Bone");
+            DeleteProduct("Tennis Ball 3-Pack");
             UpdateProductPriceByName(7.99M, "Dog Bone");
+            Console.WriteLine("\nUpdated data.");
             DisplayProducts();
         }
 

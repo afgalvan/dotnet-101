@@ -1,4 +1,4 @@
-namespace ContosoPets.Models
+namespace ContosoPets._1.Models
 {
     public class ProductOrder
     {
