@@ -1,0 +1,20 @@
+---
+version: "3.3"
+
+services:
+  postgres_db:
+    container_name: contoso_pets-db
+    restart: always
+    image: postgres:13.3-alpine
+    environment:
+      - POSTGRES_DB=contoso_pets
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+
+  app:
+    container_name: contoso_pets-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres_db
