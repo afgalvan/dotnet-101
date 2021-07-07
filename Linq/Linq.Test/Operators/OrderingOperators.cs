@@ -15,7 +15,7 @@ namespace Linq.Test.Operators
     }
 
     /// <summary>
-    /// The orderby keyword, along with descending, and the OrderBy, ThenBy, OrderbyDescending
+    /// The orderby keyword, along with descending, and the OrderBy, ThenBy, OrderByDescending
     /// and ThenByDescending LINQ queries are used to sort data output.
     /// </summary>
     [TestFixture]
