@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using EnumerableExtensions;
 using NUnit.Framework;
 
 namespace Linq.Test.Operators
@@ -144,7 +146,9 @@ namespace Linq.Test.Operators
             double endBalance = attemptedWithdrawals.Aggregate(
                 startBalance,
                 (balance, nextWithdrawal) =>
-                    nextWithdrawal <= balance ? balance - nextWithdrawal : balance);
+                    nextWithdrawal <= balance
+                        ? balance - nextWithdrawal
+                        : balance);
 
             Console.WriteLine($"Ending balance: {endBalance}");
         }
@@ -159,6 +163,21 @@ namespace Linq.Test.Operators
                     next.Length > current.Length ? next : current);
 
             Console.WriteLine($"The longest word is: {longestWord}");
+        }
+
+        [Test]
+        public void ZipMethod()
+        {
+            int[] vectorA = {0, 2, 4, 5, 6};
+            int[] vectorB = {1, 3, 5, 7, 8};
+
+            IEnumerable<int> dotProduct = vectorA.Zip(vectorB, (a, b) => a * b);
+
+            vectorA.ForEach(d => Console.Write($"{d}, "));
+            Console.WriteLine("");
+            vectorB.ForEach(d => Console.Write($"{d}, "));
+            Console.WriteLine("\n---------------");
+            dotProduct.ForEach(d => Console.Write($"{d}, "));
         }
     }
 }
