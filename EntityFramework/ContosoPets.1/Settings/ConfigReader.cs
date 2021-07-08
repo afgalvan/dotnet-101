@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace Settings
+namespace ContosoPets._1.Settings
 {
     public static class ConfigReader
     {

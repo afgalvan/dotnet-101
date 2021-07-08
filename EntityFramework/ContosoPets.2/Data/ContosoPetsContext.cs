@@ -1,6 +1,6 @@
 ﻿using ContosoPets._2.Models;
+using ContosoPets._2.Settings;
 using Microsoft.EntityFrameworkCore;
-using Settings;
 
 #nullable disable
 

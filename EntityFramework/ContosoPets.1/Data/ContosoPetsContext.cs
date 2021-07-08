@@ -1,6 +1,6 @@
 using ContosoPets._1.Models;
+using ContosoPets._1.Settings;
 using Microsoft.EntityFrameworkCore;
-using Settings;
 
 namespace ContosoPets._1.Data
 {

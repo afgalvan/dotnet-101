@@ -2,8 +2,8 @@
 version: "3.3"
 
 services:
-  postgres_db2:
-    container_name: contoso_pets-db2
+  postgres_db1:
+    container_name: contoso_pets-db1
     restart: always
     image: postgres:13.3-alpine
     environment:
@@ -11,10 +11,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
 
-  app2:
-    container_name: contoso_pets-app2
+  app1:
+    container_name: contoso_pets-app1
     build:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - postgres_db2
+      - postgres_db1

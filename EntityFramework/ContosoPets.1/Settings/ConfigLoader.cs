@@ -1,4 +1,4 @@
-namespace Settings
+namespace ContosoPets._1.Settings
 {
     public class ConfigLoader
     {
@@ -9,6 +9,7 @@ namespace Settings
             _settings = ConfigReader.ReadConfigFromFile(fileName);
         }
 
-        public string DefaultConnection => _settings["ConnectionStrings"]["DefaultConnection"];
+        public string DefaultConnection =>
+            _settings["ConnectionStrings"]["DefaultConnection"];
     }
 }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using ContosoPets._1.Data;
 using ContosoPets._1.Models;
-using Settings;
+using ContosoPets._1.Settings;
 
 namespace ContosoPets._1
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
