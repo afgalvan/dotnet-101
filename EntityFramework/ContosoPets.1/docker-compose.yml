@@ -18,3 +18,5 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - postgres_db1
+    environment:
+      - ENVIRONMENT=Docker.

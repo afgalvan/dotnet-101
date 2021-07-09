@@ -1,17 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ContosoPets._1.Data;
 using ContosoPets._1.Models;
-using ContosoPets._1.Settings;
+using ContosoPets._1.Repositories;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace ContosoPets._1
 {
-    static class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static IProductRepository _repository;
+
+        private static void Main(string[] args) =>
+            CreateHostBuilder(args).Build().Run();
+
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureLogging(logging =>
+                    logging.AddFilter(
+                        "Microsoft.EntityFrameworkCore.Database.Command",
+                        LogLevel.Warning
+                    )
+                )
+                .ConfigureServices(services =>
+                {
+                    var startup = new Startup();
+                    startup.ConfigureServices(services);
+                    using var provider = services.BuildServiceProvider();
+                    _repository =
+                        provider.GetRequiredService<IProductRepository>();
+                    Run();
+                });
+
+        private static void Run()
         {
-            Configuration.Load(args);
             SaveProducts();
             Console.WriteLine("\nOriginal products.");
             DisplayProducts();
@@ -23,35 +47,25 @@ namespace ContosoPets._1
 
         private static void SaveProducts()
         {
-            using var context = new ContosoPetsContext();
-            context.Database.EnsureCreated();
             var bone = new Product
             {
                 Name  = "Dog Bone",
                 Price = 4.99M
             };
-            context.Add(bone);
+            _repository.Save(bone);
 
             var tennisBalls = new Product
             {
                 Name  = "Tennis Ball 3-Pack",
                 Price = 9.99M
             };
-            context.Add(tennisBalls);
-
-            context.SaveChanges();
+            _repository.Save(tennisBalls);
         }
 
         private static void DisplayProducts()
         {
-            List<Product> products = ReadProducts();
-            products.ForEach(DisplayProduct);
-        }
-
-        private static List<Product> ReadProducts()
-        {
-            using var context = new ContosoPetsContext();
-            return context.Products.OrderBy(p => p.Name).ToList();
+            IEnumerable<Product> products = _repository.GetAll();
+            products.ToList().ForEach(DisplayProduct);
         }
 
         private static void DisplayProduct(Product product)
@@ -73,21 +87,13 @@ namespace ContosoPets._1
         }
 
         private static void AlterOnFind(
-            Action<ContosoPetsContext, Product> updateAction, string name)
+            Action<IProductRepository, Product> updateAction, string name)
         {
-            using var context = new ContosoPetsContext();
-
-            Product product =
-                context.Products.FirstOrDefault(p => p.Name == name);
+            Product product = _repository.GetAll().FirstOrDefault(
+                p => p.Name == name
+            );
             if (product == null) return;
-            updateAction(context, product);
-            context.SaveChanges();
-        }
-
-        private static Product GetProductByName(string name)
-        {
-            using var context = new ContosoPetsContext();
-            return context.Products.FirstOrDefault(p => p.Name == name);
+            updateAction(_repository, product);
         }
     }
 }

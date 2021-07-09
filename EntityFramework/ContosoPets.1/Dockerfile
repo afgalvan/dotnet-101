@@ -16,4 +16,4 @@ RUN dotnet publish "ContosoPets.1.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ContosoPets.1.dll", "appsettings.Docker.json"]
+ENTRYPOINT ["dotnet", "ContosoPets.1.dll"]
