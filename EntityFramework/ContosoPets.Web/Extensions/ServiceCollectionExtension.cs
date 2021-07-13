@@ -22,7 +22,7 @@ namespace ContosoPets.Web.Extensions
         public static void ConfigureProxy(this IServiceCollection services)
         {
             services.Configure<ForwardedHeadersOptions>(options =>
-                options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"))
+                options.KnownProxies.Add(IPAddress.Parse("127.0.0.1"))
             );
         }
     }

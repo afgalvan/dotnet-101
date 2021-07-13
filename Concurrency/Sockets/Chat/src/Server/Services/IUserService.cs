@@ -6,5 +6,6 @@ namespace Server.Services
     {
         public void Add(Connection connection);
         public void Remove(Connection connection);
+
     }
 }

@@ -14,10 +14,12 @@ namespace Server.Services
 
         public void Add(Connection connection)
         {
+            _users.Add(connection, new User());
         }
 
         public void Remove(Connection connection)
         {
+            _users.Remove(connection);
         }
     }
 }
