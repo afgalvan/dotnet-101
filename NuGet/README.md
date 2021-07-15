@@ -176,4 +176,5 @@ with which you'll be asked to register the account with nuget.org.
 2. nuget.org tells you if the package name is available. If it isn't, change the package identifier in your project, rebuild, and try the upload again.
 3. If the package name is available, nuget.org opens a Verify section in which you can review the metadata from the package manifest. If you included a readme file in your package, check out the preview to ensure all content is being rendered properly. To change any of the metadata, edit your project (project file or .nuspec file), rebuild, recreate the package, and upload again.
 4. When all the information is ready, select the Submit button
+
 ![NuGet Alt Logo](https://miro.medium.com/max/512/1*XhYXEAUsRVdyma5MjQn6lg.png)
