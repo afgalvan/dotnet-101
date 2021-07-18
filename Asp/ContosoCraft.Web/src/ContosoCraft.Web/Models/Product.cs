@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ContosoCraft.Web.Models
 {
@@ -19,6 +20,7 @@ namespace ContosoCraft.Web.Models
         [Required, MaxLength(50)]
         public string Maker { get; set; }
 
+        [JsonPropertyName("img")]
         public Uri ImageUrl { get; set; }
 
         [Required]

@@ -1,5 +1,6 @@
 using System.Net;
 using ContosoCraft.Web.Data;
+using ContosoCraft.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,12 @@ namespace ContosoCraft.Web.Extensions
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseMySQL(configuration.GetConnectionString("MySQL"))
             );
+        }
+
+        public static void AddServices(this IServiceCollection services)
+        {
+            services.AddScoped<UrlFetcher>();
+            services.AddScoped<JsonProductService>();
         }
 
         public static void ConfigureProxy(this IServiceCollection services)

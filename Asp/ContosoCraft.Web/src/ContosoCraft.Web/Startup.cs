@@ -1,4 +1,5 @@
 using ContosoCraft.Web.Extensions;
+using ContosoCraft.Web.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ namespace ContosoCraft.Web
         {
             services.ConfigureDbContext(Configuration);
             services.ConfigureProxy();
+            services.AddServices();
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
         }
