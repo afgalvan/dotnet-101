@@ -8,16 +8,15 @@ namespace ContosoCraft.Web.Models
 {
     public class Product
     {
-        [Key, MaxLength(20)]
+        [Key, MaxLength(50)]
         public string Id { get; set; }
 
-        [Required, MaxLength(50)]
+        [Required]
         public string Title { get; set; }
 
-        [MaxLength(50)]
         public string Description { get; set; }
 
-        [Required, MaxLength(50)]
+        [Required, MaxLength(60)]
         public string Maker { get; set; }
 
         [JsonPropertyName("img")]

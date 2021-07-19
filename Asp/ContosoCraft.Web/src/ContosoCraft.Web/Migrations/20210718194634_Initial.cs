@@ -11,10 +11,10 @@ namespace ContosoCraft.Web.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
-                    Title = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
-                    Maker = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    Maker = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
                     ImageUrl = table.Column<string>(type: "text", nullable: true),
                     Url = table.Column<string>(type: "text", nullable: false)
                 },
@@ -30,7 +30,7 @@ namespace ContosoCraft.Web.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Score = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
-                    ProductId = table.Column<string>(type: "varchar(20)", nullable: true)
+                    ProductId = table.Column<string>(type: "varchar(50)", nullable: true)
                 },
                 constraints: table =>
                 {

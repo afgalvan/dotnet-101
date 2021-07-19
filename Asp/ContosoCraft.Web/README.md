@@ -1,1 +1,1 @@
-# ContosoCraft.Web
+# Contoso Crafts Web

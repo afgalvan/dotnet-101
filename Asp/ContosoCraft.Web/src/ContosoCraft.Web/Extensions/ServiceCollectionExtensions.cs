@@ -1,5 +1,6 @@
 using System.Net;
 using ContosoCraft.Web.Data;
+using ContosoCraft.Web.Repositories;
 using ContosoCraft.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -23,6 +24,7 @@ namespace ContosoCraft.Web.Extensions
         {
             services.AddScoped<UrlFetcher>();
             services.AddScoped<JsonProductService>();
+            services.AddScoped<IProductRepository, MySqlProductRepository>();
         }
 
         public static void ConfigureProxy(this IServiceCollection services)

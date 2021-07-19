@@ -17,7 +17,7 @@ namespace ContosoCraft.Web.Services
             Response = await Request.GetResponseAsync();
 
             await using Stream stream = Response.GetResponseStream();
-            var reader = new StreamReader(
+            using var reader = new StreamReader(
                 stream ?? throw new InvalidOperationException(),
                 Encoding.UTF8
             );
