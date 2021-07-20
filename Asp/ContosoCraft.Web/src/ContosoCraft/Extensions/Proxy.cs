@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Shared.Extensions
+namespace ContosoCraft.Extensions
 {
     public static class Proxy
     {

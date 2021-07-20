@@ -1,5 +1,5 @@
+using ContosoCraft.Models;
 using Microsoft.EntityFrameworkCore;
-using Shared.Models;
 
 namespace ContosoCraft.Api.Data
 {

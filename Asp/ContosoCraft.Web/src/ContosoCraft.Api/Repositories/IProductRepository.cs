@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Shared.Models;
+using ContosoCraft.Models;
 
 namespace ContosoCraft.Api.Repositories
 {

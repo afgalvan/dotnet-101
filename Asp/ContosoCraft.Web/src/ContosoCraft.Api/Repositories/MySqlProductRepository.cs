@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ContosoCraft.Api.Data;
+using ContosoCraft.Models;
 using Microsoft.EntityFrameworkCore;
-using Shared.Models;
 
 namespace ContosoCraft.Api.Repositories
 {

@@ -1,11 +1,11 @@
 using System;
+using ContosoCraft.Extensions;
 using ContosoCraft.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Shared.Extensions;
 
 namespace ContosoCraft.Web
 {

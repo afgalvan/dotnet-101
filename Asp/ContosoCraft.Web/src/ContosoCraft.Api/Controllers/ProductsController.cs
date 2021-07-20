@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ContosoCraft.Models;
 using ContosoCraft.Web.Services;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Models;
 
 namespace ContosoCraft.Api.Controllers
 {

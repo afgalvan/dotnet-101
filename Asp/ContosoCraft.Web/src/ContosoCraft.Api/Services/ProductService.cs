@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ContosoCraft.Api.Repositories;
-using Shared.Models;
+using ContosoCraft.Models;
 
 namespace ContosoCraft.Web.Services
 {

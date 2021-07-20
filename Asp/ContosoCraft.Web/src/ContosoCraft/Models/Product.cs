@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Shared.Models
+namespace ContosoCraft.Models
 {
     public class Product
     {
-        [Key, MaxLength(50)]
+        [Required, Key, MaxLength(50)]
         public string Id { get; set; }
 
         [Required]

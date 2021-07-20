@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
+using ContosoCraft.Models;
 using Microsoft.Extensions.Configuration;
-using Shared.Models;
 
 namespace ContosoCraft.Web.Services
 {
