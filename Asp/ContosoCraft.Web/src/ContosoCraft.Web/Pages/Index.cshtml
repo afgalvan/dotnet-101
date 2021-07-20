@@ -6,5 +6,16 @@
 
 <div class="text-center">
     <h1 class="display-4 text-light">Contoso Crafts</h1>
-    <p class="text-light">Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="card-columns">
+    @foreach (var product in Model.Products)
+    {
+        <div class="card bg-secondary border-gh">
+            <img class="card-img-top" src="@product.ImageUrl" alt="@product.Title"/>
+            <div class="card-body">
+                <h5 class="card-title text-light">@product.Title</h5>
+            </div>
+        </div>
+    }
 </div>

@@ -1,29 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ContosoCraft.Web.Models;
-using ContosoCraft.Web.Repositories;
 using ContosoCraft.Web.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Shared.Models;
 
 namespace ContosoCraft.Web.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
-        private readonly JsonProductService  _jsonProductService;
+        private readonly ILogger<IndexModel>  _logger;
+        private readonly JsonProductLoader    _productLoader;
+        public           IEnumerable<Product> Products { get; private set; }
 
         public IndexModel(ILogger<IndexModel> logger,
-            JsonProductService jsonProductService)
+            IEnumerable<Product> products, JsonProductLoader productLoader)
         {
-            _logger             = logger;
-            _jsonProductService = jsonProductService;
+            _logger        = logger;
+            _productLoader = productLoader;
+            Products       = products;
         }
 
         public async Task OnGet()
         {
-            IEnumerable<Product> products =
-                await _jsonProductService.GetProductList();
+            Products = await _productLoader.GetProductList();
         }
     }
 }

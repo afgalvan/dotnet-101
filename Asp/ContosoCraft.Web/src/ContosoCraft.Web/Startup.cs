@@ -1,10 +1,11 @@
+using System;
 using ContosoCraft.Web.Extensions;
-using ContosoCraft.Web.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Shared.Extensions;
 
 namespace ContosoCraft.Web
 {
@@ -19,7 +20,6 @@ namespace ContosoCraft.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.ConfigureDbContext(Configuration);
             services.ConfigureProxy();
             services.AddServices();
             services.AddRazorPages()
@@ -48,7 +48,19 @@ namespace ContosoCraft.Web
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+                /*endpoints.MapGet("/api/products", async context =>
+                {
+                    IEnumerable<Product> products = await app.ApplicationServices
+                        .GetRequiredService<ProductService>()
+                        .GetAllProducts();
+
+                    var jsonProducts = JsonSerializer.Serialize(products);
+                    await context.Response.WriteAsync(jsonProducts);
+                });*/
+            });
         }
     }
 }

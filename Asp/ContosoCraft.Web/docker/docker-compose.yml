@@ -1,6 +1,11 @@
 ---
 version: "3.9"
 
+x-service: &dotnet-service
+  restart: always
+  environment:
+    - ASPNETCORE_ENVIRONMENT=Docker
+
 services:
   db:
     container_name: contoso_craft_mysql_db
@@ -14,17 +19,27 @@ services:
       MYSQL_USER: contosocraftuser
       MYSQL_PASSWORD: contosocraftpassword
 
+  api:
+    <<: *dotnet-service
+    container_name: contoso_craft_api
+    image: contoso_craft_api
+    build:
+      context: ../
+      dockerfile: src/ContosoCraft.Api/Dockerfile
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+
   webapp:
+    <<: *dotnet-service
     container_name: contoso_craft_webapp
-    restart: always
     image: contoso_craft_webapp
     build:
       context: ../
       dockerfile: src/ContosoCraft.Web/Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Docker
     depends_on:
-      - db
+      - api
     ports:
       - 5000:5000
 

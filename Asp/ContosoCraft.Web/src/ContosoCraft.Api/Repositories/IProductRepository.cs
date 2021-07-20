@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ContosoCraft.Web.Models;
+using Shared.Models;
 
-namespace ContosoCraft.Web.Repositories
+namespace ContosoCraft.Api.Repositories
 {
     public interface IProductRepository
     {

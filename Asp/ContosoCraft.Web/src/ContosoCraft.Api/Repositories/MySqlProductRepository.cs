@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ContosoCraft.Web.Data;
-using ContosoCraft.Web.Models;
+using ContosoCraft.Api.Data;
 using Microsoft.EntityFrameworkCore;
+using Shared.Models;
 
-namespace ContosoCraft.Web.Repositories
+namespace ContosoCraft.Api.Repositories
 {
     public class MySqlProductRepository : IProductRepository
     {

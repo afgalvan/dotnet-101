@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css"/>
 </head>
-<body class="bg-dark">
+<body class="bg-darker">
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-secondary border-bottom box-shadow mb-3">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-darker-faint box-shadow mb-3">
         <div class="container">
             <a class="navbar-brand" asp-area="" asp-page="/Index">Contoso Crafts</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -19,9 +19,6 @@
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-page="/Index">Home</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" asp-area="" asp-page="/Privacy">Privacy</a>
                     </li>
@@ -36,9 +33,9 @@
     </main>
 </div>
 
-<footer class="border-top footer text-muted bg-dark">
-    <div class="container text-light">
-        &copy; 2021 - ContosoCraft.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+<footer class="footer text-muted">
+    <div class="container disabled">
+        &copy; 2021 - Contoso Crafts - <a asp-area="" asp-page="/Privacy">Privacy</a>
     </div>
 </footer>
 

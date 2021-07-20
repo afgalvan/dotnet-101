@@ -1,7 +1,7 @@
-using ContosoCraft.Web.Models;
 using Microsoft.EntityFrameworkCore;
+using Shared.Models;
 
-namespace ContosoCraft.Web.Data
+namespace ContosoCraft.Api.Data
 {
     public class ApplicationContext : DbContext
     {

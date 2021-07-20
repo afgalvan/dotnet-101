@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ContosoCraft.Web.Models
+namespace Shared.Models
 {
     [Table("Ratings")]
     public class Rating
