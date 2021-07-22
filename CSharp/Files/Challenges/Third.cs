@@ -27,10 +27,8 @@ namespace Files.Challenges
         }
 
         private static double CalculateSalesTotal(
-            IEnumerable<string> salesFiles)
-        {
-            return salesFiles.Sum(GetTotalOfFile);
-        }
+            IEnumerable<string> salesFiles) => salesFiles.Sum(GetTotalOfFile);
+
 
         private static double GetTotalOfFile(string json)
         {
