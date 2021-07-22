@@ -8,24 +8,7 @@ namespace ContosoCraft.Api.Controllers
     [ApiController]
     public class Home : ControllerBase
     {
-        private readonly IWebHostEnvironment env;
-
-        public Home(IWebHostEnvironment env)
-        {
-            this.env = env;
-        }
-
         [HttpGet]
-        public ActionResult Get()
-        {
-            if (env.IsDevelopment())
-                return Redirect("/swagger/index.html");
-
-            return Ok(new
-            {
-                Title = "Contoso Crafts API",
-                Version = "1.0"
-            });
-        }
+        public ActionResult Get() => Redirect("/swagger/index.html");
     }
 }
