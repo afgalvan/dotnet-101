@@ -165,6 +165,10 @@ namespace Linq.Test.Operators
             Console.WriteLine($"The longest word is: {longestWord}");
         }
 
+        /// <summary>
+        /// Using the Zip method to multiply each element of an array against
+        /// each element of other array getting the dot product vector
+        /// </summary>
         [Test]
         public void ZipMethod()
         {

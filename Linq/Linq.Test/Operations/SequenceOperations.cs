@@ -18,6 +18,7 @@ namespace Linq.Test.Operations
 
             bool match = wordsA.SequenceEqual(wordsB);
 
+            Assert.True(match);
             Console.WriteLine($"The sequences match: {match}");
         }
 

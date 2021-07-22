@@ -59,10 +59,10 @@ namespace Linq.Test.Operators
         public void SkipElements()
         {
             int[] numbers = {5, 4, 1, 3, 9, 8, 6, 7, 2, 0};
-            IEnumerable<int> first3Numbers = numbers.Skip(4);
+            IEnumerable<int> first4Numbers = numbers.Skip(4);
 
             Console.WriteLine("All but first 4 numbers:");
-            first3Numbers.ForEach(Console.WriteLine);
+            first4Numbers.ForEach(Console.WriteLine);
         }
 
         [Test]

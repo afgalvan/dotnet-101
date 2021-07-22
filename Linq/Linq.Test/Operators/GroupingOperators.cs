@@ -41,6 +41,7 @@ namespace Linq.Test.Operators
                     group n by n % 5
                     into g
                     select (Remainder: g.Key, Numbers: g);
+
             IEnumerable<(int Remainder, IGrouping<int, int> Numbers)>
                 numberGroup = numbers.GroupBy(n => n % 5)
                     .Select(g => (Remainder: g.Key, Numbers: g));
@@ -53,6 +54,16 @@ namespace Linq.Test.Operators
                     $"\nNumbers with a remainder of {remainder} when divided by 5:");
                 grouping.ForEach(n => Console.Write($"{n}, "));
             });
+        }
+
+        [Test]
+        public void GetUniquesRepeatLetter()
+        {
+            char[] letters = {'a', 'b', 'k', 'j', 'b', 'a', 'h'};
+            letters.GroupBy(letter => letter)
+                .Where(group => group.Count() == 1)
+                .Select(group => group.Key)
+                .ForEach(Console.WriteLine);
         }
 
         [Test]
