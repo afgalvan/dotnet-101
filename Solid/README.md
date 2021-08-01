@@ -1,4 +1,4 @@
-[![](https://miro.medium.com/max/2000/1*wrxj0oBKpA_GXb8LPhXOeg.png)](https://medium.com/@ugonnat)
+[![SOLID banner](https://miro.medium.com/max/2000/1*wrxj0oBKpA_GXb8LPhXOeg.png)](https://medium.com/@ugonnat)
 
 # SOLID Principles
 
@@ -21,15 +21,15 @@ we write software.
 
 SOLID stands for:
 
-- [**S**ingle Responsibility Principle (SRP)]()
+- [**S**ingle Responsibility Principle (SRP)](#s---single-responsibility-principle)
 
-- [**O**pen/Closed Principle (OCP)]()
+- [**O**pen/Closed Principle (OCP)](#o---openclosed-principle)
 
-- [**L**iskov Substitution Principle (LSP)]()
+- [**L**iskov Substitution Principle (LSP)](#l---liskov-substitution-principle)
 
-- [**I**nterface Segregation Principle (ISP)]()
+- [**I**nterface Segregation Principle (ISP)](#i---interface-segregation-principle)
 
-- [**D**ependency Inversion Principle (DIP)]()
+- [**D**ependency Inversion Principle (DIP)](#d---dependency-inversion-principle)
 
 The intention of these principles is to make software designs more
 understandable, easier to maintain and easier to extend. As a software engineer,
@@ -44,7 +44,7 @@ In programming, the Single Responsibility Principle states that every module or
 class should have responsibility over a single part of the functionality
 provided by the software.
 
-[![](https://miro.medium.com/max/2000/1*P3oONz9Da3Tc1w97fMV73Q.png)](https://medium.com/@ugonnat)
+[![Single Responsability Principle Image](https://miro.medium.com/max/2000/1*P3oONz9Da3Tc1w97fMV73Q.png)](https://medium.com/@ugonnat)
 
 You may have heard the quote: *"Do one thing and do it well"*. This refers to
 the single responsibility principle.
@@ -119,7 +119,7 @@ In programming, the open/closed principle states that software entities
 (classes, modules, functions, etc.) should be open for extensions, but closed
 for modification.
 
-[![](https://miro.medium.com/max/2000/1*0MtFBmm6L2WVM04qCJOZPQ.png)](https://medium.com/@ugonnat)
+[![Open Close Principle Image](https://miro.medium.com/max/2000/1*0MtFBmm6L2WVM04qCJOZPQ.png)](https://medium.com/@ugonnat)
 
 If you have a general understanding of OOP, you probably already know about
 polymorphism. We can make sure that our code is compliant with the open/closed
@@ -143,7 +143,7 @@ introduced for the first time. But this principle is fairly easy to comprehend.
 It states that objects in a program should be replaceable with instances of
 their parent types without altering the correctness of that program.
 
-[![](https://miro.medium.com/max/2000/1*yKk2XKJaCLNlDxQMx1r55Q.png)](https://medium.com/@ugonnat)
+[![Liskov Substitution Principle Image](https://miro.medium.com/max/2000/1*yKk2XKJaCLNlDxQMx1r55Q.png)](https://medium.com/@ugonnat)
 
 The principle defines that objects of a ~~subclass~~ **implementation** shall
 be replaceable with objects of its ~~superclass~~ **interface** without breaking the
@@ -191,7 +191,7 @@ class ErrorLogger : ILogger
 > use, or clients shouldn't be forced to depend on methods they do not use".*
 > Robert C. Martin
 
-[![](https://miro.medium.com/max/5200/1*2hmyR9L43Vm64MYxj4Y89w.png)](https://medium.com/@ugonnat)
+[![Interface Segregatio Principle Image](https://miro.medium.com/max/5200/1*2hmyR9L43Vm64MYxj4Y89w.png)](https://medium.com/@ugonnat)
 
 In programming, the interface segregation principle states that no client
 should be forced to depend on methods it does not use. Put more simply: Do not
@@ -312,7 +312,7 @@ This principle states that
 - High-level modules should not depend on low-level modules. Both should depend on abstractions.
 - Abstractions should not depend on details. Details should depend on abstractions.
 
-[![](https://miro.medium.com/max/2000/1*Qk8tDmjQlyvwKxNTfXIo0Q.png)](https://medium.com/@ugonnat)
+[![Dependency Inversion Principle Image](https://miro.medium.com/max/2000/1*Qk8tDmjQlyvwKxNTfXIo0Q.png)](https://medium.com/@ugonnat)
 
 To comply with this principle, we need to use a design pattern known as a dependency inversion pattern, most often solved by using dependency injection.
 Dependency injection is a huge topic and can be as complicated or simple as one might see the need for.
