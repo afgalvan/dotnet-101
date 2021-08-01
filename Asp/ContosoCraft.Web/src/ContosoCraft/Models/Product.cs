@@ -27,6 +27,25 @@ namespace ContosoCraft.Models
 
         public ICollection<Rating> Ratings { get; set; }
 
+        public void AddRating(Rating rating) => Ratings.Add(rating);
+
         public override string ToString() => JsonSerializer.Serialize(this);
+
+        private bool Equals(Product other)
+        {
+            return Id == other.Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj.GetType() == GetType() && Equals((Product) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id != null ? Id.GetHashCode() : 0;
+        }
     }
 }

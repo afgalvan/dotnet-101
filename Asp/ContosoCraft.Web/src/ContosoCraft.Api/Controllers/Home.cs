@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
 
 namespace ContosoCraft.Api.Controllers
 {
@@ -10,5 +8,8 @@ namespace ContosoCraft.Api.Controllers
     {
         [HttpGet]
         public ActionResult Get() => Redirect("/swagger/index.html");
+
+        [HttpGet("/{x:regex(^doc)}")]
+        public ActionResult GetDocumentation(string x) => Redirect("/swagger/index.html");
     }
 }

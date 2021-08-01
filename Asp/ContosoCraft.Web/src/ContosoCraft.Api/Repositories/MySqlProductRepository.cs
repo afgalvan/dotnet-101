@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using ContosoCraft.Api.Data;
 using ContosoCraft.Models;
@@ -21,7 +22,13 @@ namespace ContosoCraft.Api.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Product>> GetAllProducts() =>
-            await _context.Products.ToListAsync();
+        public async Task<IEnumerable<Product>> GetAllProducts(CancellationToken cancellation) =>
+            await _context.Products.Include(p => p.Ratings).ToListAsync(cancellation);
+
+        public async Task Update(Product product)
+        {
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+        }
     }
 }

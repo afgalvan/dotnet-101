@@ -1,6 +1,6 @@
 using ContosoCraft.Api.Data;
 using ContosoCraft.Api.Repositories;
-using ContosoCraft.Web.Services;
+using ContosoCraft.Api.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
