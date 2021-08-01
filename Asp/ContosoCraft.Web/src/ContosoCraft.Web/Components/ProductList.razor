@@ -1,0 +1,51 @@
+@using ContosoCraft.Models;
+@using ContosoCraft.Web.Services;
+@inject JsonProductLoader _jsonProductLoader;
+
+
+<h3 class="text-light">Product List</h3>
+
+<div class="card-columns">
+    @foreach (Product product in _products)
+    {
+        <div class="card bg-secondary border-gh">
+            <img class="card-img-top" src="@product.ImageUrl" alt="@product.Title"/>
+            <div class="card-body">
+                <h5 class="card-title text-light">@product.Title</h5>
+            </div>
+            <div class="card-footer bg-darker">
+                <small class="text-muted">
+                    <button @onclick="_ => SelectProduct(product.Id)"
+                            data-toggle="modal" data-target="#productModal"
+                            class="btn btn-primary">
+                        More info
+                    </button>
+                </small>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private Product _selectedProduct;
+    private string _selectedProductId;
+
+    private IList<Product> _products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _products = new List<Product>();
+        (await _jsonProductLoader.GetProductList())
+            .ToList()
+            .ForEach(p => _products.Add(p));
+        StateHasChanged();
+    }
+
+    private async Task SelectProduct(string productId)
+    {
+        _selectedProductId = productId;
+        _selectedProduct = (await _jsonProductLoader.GetProductList())
+            .FirstOrDefault(product => product.Id == _selectedProductId);
+    }
+
+}

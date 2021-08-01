@@ -24,9 +24,9 @@ namespace ContosoCraft.Api.Services
             _repository = repository;
         }
 
-        public async Task Save(Product product)
+        public async Task Save(Product product, CancellationToken cancellation)
         {
-            await _repository.Save(product);
+            await _repository.Save(product, cancellation);
         }
 
         public async Task<IEnumerable<Product>> GetAllProducts(
@@ -49,7 +49,7 @@ namespace ContosoCraft.Api.Services
             var rating = new Rating {Score = score};
             product.AddRating(rating);
 
-            await _repository.Update(product);
+            await _repository.Update(product, cancellation);
         }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using ContosoCraft.Extensions;
 using ContosoCraft.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -22,6 +21,7 @@ namespace ContosoCraft.Web
         {
             services.ConfigureProxy();
             services.AddServices();
+            services.AddServerSideBlazor();
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
         }
@@ -51,6 +51,7 @@ namespace ContosoCraft.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
                 /*endpoints.MapGet("/api/products", async context =>
                 {
                     IEnumerable<Product> products = await app.ApplicationServices

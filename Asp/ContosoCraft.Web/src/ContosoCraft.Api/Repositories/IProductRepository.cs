@@ -7,8 +7,8 @@ namespace ContosoCraft.Api.Repositories
 {
     public interface IProductRepository
     {
-        Task Save(Product product);
+        Task Save(Product product, CancellationToken cancellation);
         Task<IEnumerable<Product>> GetAllProducts(CancellationToken cancellation);
-        Task Update(Product product);
+        Task Update(Product product, CancellationToken cancellation);
     }
 }

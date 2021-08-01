@@ -16,19 +16,19 @@ namespace ContosoCraft.Api.Repositories
             _context = context;
         }
 
-        public async Task Save(Product product)
+        public async Task Save(Product product, CancellationToken cancellation)
         {
-            await _context.Products.AddAsync(product);
-            await _context.SaveChangesAsync();
+            await _context.Products.AddAsync(product, cancellation);
+            await _context.SaveChangesAsync(cancellation);
         }
 
         public async Task<IEnumerable<Product>> GetAllProducts(CancellationToken cancellation) =>
             await _context.Products.Include(p => p.Ratings).ToListAsync(cancellation);
 
-        public async Task Update(Product product)
+        public async Task Update(Product product, CancellationToken cancellation)
         {
             _context.Products.Update(product);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellation);
         }
     }
 }
