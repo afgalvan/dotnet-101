@@ -1,8 +1,7 @@
-using System.Net;
+using ContosoCraft.Web.Components;
 using ContosoCraft.Web.Services;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace ContosoCraft.Web.Extensions
 {
@@ -12,6 +11,7 @@ namespace ContosoCraft.Web.Extensions
         public static void AddServices(this IServiceCollection services)
         {
             services.AddScoped<UrlFetcher>();
+            services.AddScoped<ILogger<ProductList>, Logger<ProductList>>();
             services.AddScoped<JsonProductLoader>();
         }
     }

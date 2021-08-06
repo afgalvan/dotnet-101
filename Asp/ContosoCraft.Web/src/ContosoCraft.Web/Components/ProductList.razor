@@ -8,17 +8,17 @@
 <div class="card-columns">
     @foreach (Product product in _products)
     {
-        <div class="card bg-secondary border-gh">
-            <img class="card-img-top" src="@product.ImageUrl" alt="@product.Title"/>
-            <div class="card-body">
-                <h5 class="card-title text-light">@product.Title</h5>
+        <div class="card">
+            <div class="card-img" style="background-image: url('@product.ImageUrl');">
             </div>
-            <div class="card-footer bg-darker">
+            <div class="card-body">
+                <h5 class="card-title">@product.Title</h5>
+            </div>
+            <div class="card-footer">
                 <small class="text-muted">
-                    <button @onclick="_ => SelectProduct(product.Id)"
-                            data-toggle="modal" data-target="#productModal"
-                            class="btn btn-primary">
-                        More info
+                    <button @onclick="_ => SelectProduct(product)"
+                            data-toggle="modal" data-target="#productModal" class="btn btn-primary">
+                        More Info
                     </button>
                 </small>
             </div>
@@ -26,26 +26,56 @@
     }
 </div>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+@if (SelectedProduct != null)
+{
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productTitle">@SelectedProduct.Title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-img" style="background-image: url('@SelectedProduct.ImageUrl');">
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">@SelectedProduct.Description</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 @code {
-    private Product _selectedProduct;
-    private string _selectedProductId;
+
+    [Parameter]
+    public Product SelectedProduct { get; set; }
 
     private IList<Product> _products;
 
     protected override async Task OnInitializedAsync()
     {
         _products = new List<Product>();
+
         (await _jsonProductLoader.GetProductList())
             .ToList()
             .ForEach(p => _products.Add(p));
+
         StateHasChanged();
     }
 
-    private async Task SelectProduct(string productId)
+    private void SelectProduct(Product product)
     {
-        _selectedProductId = productId;
-        _selectedProduct = (await _jsonProductLoader.GetProductList())
-            .FirstOrDefault(product => product.Id == _selectedProductId);
+        SelectedProduct = product;
     }
 
 }
