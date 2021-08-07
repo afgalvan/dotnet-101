@@ -1,5 +1,6 @@
 @using ContosoCraft.Models;
 @using ContosoCraft.Web.Services;
+@using Microsoft.AspNetCore.Components.Web
 @inject JsonProductLoader _jsonProductLoader;
 
 
@@ -16,7 +17,7 @@
             </div>
             <div class="card-footer">
                 <small class="text-muted">
-                    <button @onclick="_ => SelectProduct(product)"
+                    <button @onclick="e => SelectProduct(e, product)"
                             data-toggle="modal" data-target="#productModal" class="btn btn-primary">
                         More Info
                     </button>
@@ -73,9 +74,10 @@
         StateHasChanged();
     }
 
-    private void SelectProduct(Product product)
+    private void SelectProduct(MouseEventArgs mouseEvent, Product product)
     {
         SelectedProduct = product;
+        StateHasChanged();
     }
 
 }
