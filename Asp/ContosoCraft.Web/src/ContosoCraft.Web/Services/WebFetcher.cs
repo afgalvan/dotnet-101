@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContosoCraft.Web.Services
 {
-    public class UrlFetcher
+    public class WebFetcher : IFetcher
     {
         private WebRequest  Request  { get; set; }
         private WebResponse Response { get; set; }

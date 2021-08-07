@@ -25,7 +25,7 @@ namespace ContosoCraft.Models
         [Required]
         public Uri Url { get; set; }
 
-        public ICollection<Rating> Ratings { get; set; }
+        public IList<Rating> Ratings { get; set; }
 
         public void AddRating(Rating rating) => Ratings.Add(rating);
 

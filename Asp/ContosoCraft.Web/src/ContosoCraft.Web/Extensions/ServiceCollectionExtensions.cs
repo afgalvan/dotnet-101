@@ -10,9 +10,12 @@ namespace ContosoCraft.Web.Extensions
 
         public static void AddServices(this IServiceCollection services)
         {
-            services.AddScoped<UrlFetcher>();
+            services.AddHttpClient<HttpRequester>();
+            services.AddScoped<IFetcher, HttpRequester>();
+            services.AddScoped<IPatcher, HttpRequester>();
             services.AddScoped<ILogger<ProductList>, Logger<ProductList>>();
             services.AddScoped<JsonProductLoader>();
+            services.AddScoped<RatingSubmitter>();
         }
     }
 }

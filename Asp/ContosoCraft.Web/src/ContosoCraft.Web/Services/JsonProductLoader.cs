@@ -8,7 +8,7 @@ namespace ContosoCraft.Web.Services
 {
     public class JsonProductLoader
     {
-        private readonly UrlFetcher     _fetcher;
+        private readonly IFetcher       _fetcher;
         private readonly IConfiguration _configuration;
 
         private string ApiUrl => _configuration.GetSection("Api")["Url"];
@@ -16,7 +16,7 @@ namespace ContosoCraft.Web.Services
         private string JsonUrl => ApiUrl + "/Products";
         // @"https://gist.githubusercontent.com/bradygaster/3d1fcf43d1d1e73ea5d6c1b5aab40130/raw/e0bced80b7672a15e57383c2df61690db037db2c/products.json";
 
-        public JsonProductLoader(UrlFetcher fetcher,
+        public JsonProductLoader(IFetcher fetcher,
             IConfiguration configuration)
         {
             _fetcher       = fetcher;
