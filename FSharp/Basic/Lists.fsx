@@ -1,13 +1,11 @@
-let list = [1 .. 5]
+module Lists =
+    let list = [1 .. 5]
 
-let rec displayList = function
-  | []       -> ()
-  | head :: tail ->
-      printfn "%A" head;
-      displayList tail
+    // Using pipes
+    printfn "\nMixed pipes: "
+    List.map (printfn "%A") <| (list |> List.sortDescending)
 
-displayList list
-
-// Using pipes
-printfn "\nWith pipes: "
-List.map (printfn "%A") <| (list |> List.sortDescending) // Not necesary at all
+    printfn "\nOne direction pipe:"
+    list
+        |> List.sortDescending
+        |> List.map (printfn "%A")
