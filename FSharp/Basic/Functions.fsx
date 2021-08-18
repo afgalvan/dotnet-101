@@ -14,4 +14,3 @@ let rec fibo = function
     | n -> fibo (n - 1) + fibo (n - 2)
 
 printfn "fibo(8) = %i" (fibo 8)
-
