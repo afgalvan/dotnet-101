@@ -156,7 +156,7 @@ It's more convenient to use interfaces instead of classes, because of the
 ```c#
 class PostService : IPostService
 {
-    // Use a interface instead of the class
+    // Use an interface instead of the class
     private ILogger _logger = new ErrorLogger();
     private IDatabase _db = new MySQLDatabase();
 
@@ -333,7 +333,7 @@ class PostService : IPostCreator
     private readonly IPostRepository _repository;
 
     // Inject dependencies in constructor to depend on abstraction instead of implementations.
-    public PostService(ILogger logger, IPostRepository _repository)
+    public PostService(ILogger logger, IPostRepository repository)
     {
         _logger = logger;
         _repository = repository;
